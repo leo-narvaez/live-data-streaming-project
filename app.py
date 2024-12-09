@@ -54,7 +54,6 @@ def delivery_report(err, msg):
 
 @app.route("/", methods=['GET','POST'])
 def bid():
-	result = 0
 	try:
 		# Conectar a la base de datos
 		print("Conectando...")
@@ -75,7 +74,7 @@ def bid():
 		cur.execute(query)
 		
 		# Obtener el resultado
-		result = (cur.fetchone()[0], 0)
+		result = (cur.fetchone()[0])
 		print(f"El precio máximo actual es: {result}")
 		
 		# Cerrar el cursor y la conexión
@@ -156,12 +155,13 @@ def bid():
 		#if the current price that bidder sent is more than maximum price then it becomes the maximum bid
 		if int(price) > result:
 			result=int(price)
-
+			message = f"{name} La tuya es más grande."
+		else:
+			message = f"{name} Te falta."
 		#return the template index.html on browser with mentioned arguments
-		return render_template('index.html', bid_added=True, highest_bid=result)
+		return render_template('index.html', bid_added=True, highest_bid=result, message=message)
 	#if method=GET (when we just reload the page or visit for first time)
-	return render_template('index.html', bid_added=False)
-# , highest_bid=result
+	return render_template('index.html', bid_added=False, highest_bid=result)
 
 if __name__ == '__main__':
 	app.run(debug=True)
