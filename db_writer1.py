@@ -11,6 +11,7 @@ from confluent_kafka.schema_registry import SchemaRegistryClient
 
 
 API_KEY, ENDPOINT_SCHEMA_URL, BOOTSTRAP_SERVER, SECURITY_PROTOCOL, SSL_MECHANISM, SCHEMA_REGISTRY_API_KEY, SCHEMA_REGISTRY_API_SECRET, API_SECRET_KEY  = config.config_values()
+HOST, USER, PASSW, DATABASE = config.config_mysql()
 
 def sasl_conf():
 
@@ -83,8 +84,17 @@ def main(topic):
                 #some process
                 #time.sleep(3)
                 ##
-                cnx = conn.connect(host = "localhost", user = "root",
-                    passwd = "your-password", database = "test")
+                # Conectar a la base de datos
+                print("Conectando...")
+                cnx = conn.connect(
+                    host=HOST,
+                    user=USER,
+                    password=PASSW,
+                    database=DATABASE,
+                    connection_timeout=30  
+                )
+
+                print("Conexión exitosa a la base de datos en Azure MySQL")
                 cur = cnx.cursor()
                 query = "insert into bid (name, price, bid_ts) values ( %s, %s, %s)"
                 data = (name,price,bid_ts)
@@ -99,14 +109,10 @@ def main(topic):
                 print('seconds spent from web page to table:', time.time()-time.mktime(time.strptime(bid_ts, '%Y-%m-%d %H:%M:%S')))
                 print('-------------------------------')
 
-            except conn.Error as err :
-                if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-                    print("Something is wrong with your user name or password")
-                elif err.errno == errorcode.ER_BAD_DB_ERROR :
-                    print("Database does not Exist")
-                else :
-                    print(err)
-                err.error()
+            except conn.Error as err:
+                print(f"Error al conectar a la base de datos: {err}")
+            except Exception as e:
+                print(f"Ocurrió un error: {e}")
                 
         except KeyboardInterrupt:
             break

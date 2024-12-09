@@ -15,7 +15,7 @@ from confluent_kafka.schema_registry.json_schema import JSONSerializer
 app = Flask(__name__)
 
 API_KEY, ENDPOINT_SCHEMA_URL, BOOTSTRAP_SERVER, SECURITY_PROTOCOL, SSL_MECHANISM, SCHEMA_REGISTRY_API_KEY, SCHEMA_REGISTRY_API_SECRET, API_SECRET_KEY  = config.config_values()
-
+HOST, USER, PASSW, DATABASE = config.config_mysql()
 
 def sasl_conf():
 
@@ -54,13 +54,38 @@ def delivery_report(err, msg):
 
 @app.route("/", methods=['GET','POST'])
 def bid():
-	#Connecting to the DB and fetching the maximum bid till now
-	# cnx = conn.connect(host = "localhost", user = "root", passwd = "mysql", database = "test")
-	# cur = cnx.cursor()
-	# query = "select max(price) from bid;"
+	result = 0
+	try:
+		# Conectar a la base de datos
+		print("Conectando...")
+		cnx = conn.connect(
+			host=HOST,
+			user=USER,
+			password=PASSW,
+			database=DATABASE,
+			connection_timeout=30  
+		)
+		# Crear un cursor para ejecutar la consulta
+		cur = cnx.cursor()
+		
+		# Definir la consulta SQL
+		query = "SELECT MAX(price) FROM bid;"
+		
+		# Ejecutar la consulta
+		cur.execute(query)
+		
+		# Obtener el resultado
+		result = (cur.fetchone()[0], 0)
+		print(f"El precio máximo actual es: {result}")
+		
+		# Cerrar el cursor y la conexión
+		cur.close()
+		cnx.close()
 
-	# cur.execute(query)
-	# result = cur.fetchone()[0]
+	except conn.Error as err:
+		print(f"Error al conectar a la base de datos: {err}")
+	except Exception as e:
+		print(f"Ocurrió un error: {e}")
 
 	#if bid is submitted it will come as POST request.	
 	if request.method == 'POST':
@@ -93,19 +118,15 @@ def bid():
 			print(msg_key, ':', response)
 		#---------------
 		schema_registry_conf = schema_config()
-		print("Schema: ", schema_registry_conf)
 		#inititalize the schema registry client to fetch the schema
 		schema_registry_client = SchemaRegistryClient(schema_registry_conf)
-		print("Schema registry", schema_registry_client)
 		topic = 'auction'
 		#getting the latest schema from Schema registry
-		my_schema = schema_registry_client.get_latest_version(topic + '-value').schema.schema_str 
-		print("My schema", my_schema)
+		my_schema = schema_registry_client.get_latest_version(topic + '-value').schema.schema_str
 		#To serialize the keys
 		string_serializer = StringSerializer('utf_8')
 		#to serialize json data
 		json_serializer = JSONSerializer(my_schema, schema_registry_client, to_dict=None)
-		print("Json: ", json_serializer)
 		producer = Producer(sasl_conf())
 
 		print(f"Producing user records to topic {topic}. ^C to exit.")
