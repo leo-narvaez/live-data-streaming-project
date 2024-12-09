@@ -1,0 +1,22 @@
+# Ignorar el entorno virtual
+venv/
+
+# Archivos de compilación de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos de configuración de IDEs
+.idea/
+.vscode/
+
+# Archivos de configuración de sistemas operativos
+.DS_Store
+Thumbs.db
+
+# Archivos de logs
+*.log
+
+# Archivos de bases de datos locales
+*.sqlite3
