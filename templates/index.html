@@ -8,7 +8,15 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh; 
+      height: 90vh;
+      gap:10px;
+    }
+    .title-apuesta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-top: 50px;
     }
 
     body {
@@ -26,24 +34,30 @@
     .btn-primary {
       border: none;
     }
+    h1,h2 {
+      color: #FFD700; /* Dorado */
+    }
   </style>
 
 </head>
 
   <body>
     <div>
-    <div class="center-content">
       
+    <div class="center-content">
+      <div class="title-apuesta">
+        <label><h1>Almacén 403 </hi1></label> 
+      </div>
+      <h1>Puja más alta : {{ highest_bid }}</h1>
       <div class="card col-sm-4 center-content">
-       <h1>APUESTA</h1>
-        <h5>apuesta más alta : {{ highest_bid }}</h5>
+       <h1>SUBASTA</h1>
         <form action = "/", method = 'post'>
           <label for="name"></label><br>
           <input type="text" id="name" name="name" placeholder="nombre... "><br>
           <label for="price"></label><br>
           <input type="text" id="price" name="price" placeholder="precio... "><br><br>
           <div class="d-grid gap-2 col-6 mx-auto">
-            <input class="btn btn-primary btn-sm btn-block" type="submit" value="pujar">
+            <input class="btn btn-primary btn-sm btn-block" type="submit" value="PUJAR">
           </div>
         </form>
         </div>
