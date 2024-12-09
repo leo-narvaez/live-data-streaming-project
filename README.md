@@ -28,6 +28,7 @@ Cuando el entorno esté activado, verás su nombre en la línea de comandos, ind
 Si tu proyecto tiene un archivo que lista las dependencias necesarias (como un archivo `requirements.txt`), puedes instalar todas las bibliotecas requeridas de manera automática. Esto asegura que tu proyecto tenga todas las herramientas necesarias para funcionar correctamente.
 ```bash
 pip install -r requirements.txt
+
 ```
 
 Ejecutar el proyecto Flask:  
