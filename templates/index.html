@@ -1,26 +1,58 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-  </head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">  
+  <style>
+    .center-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh; 
+    }
+
+    body {
+      background-color:#001F54;
+      color:#FFFFFF;
+    }
+
+    .card {
+      background-color: #2C3E50; /* Gris Oscuro */
+        color: #FFD700; /* Dorado */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    }
+    .btn-primary {
+      border: none;
+    }
+  </style>
+
+</head>
 
   <body>
-    <center>
-    <h1>Bid</h1>
-    <h5>Highest bid : {{ highest_bid }}</h5>
-    <form action = "/", method = 'post'>
-      <label for="name">Name:</label><br>
-      <input type="text" id="name" name="name"><br>
-      <label for="price">Price:</label><br>
-      <input type="text" id="price" name="price"><br><br>
-      <input class="btn btn-primary" type="submit" value="Bid">
-    </form>
+    <div>
+    <div class="center-content">
+      
+      <div class="card col-sm-4 center-content">
+       <h1>APUESTA</h1>
+        <h5>apuesta más alta : {{ highest_bid }}</h5>
+        <form action = "/", method = 'post'>
+          <label for="name"></label><br>
+          <input type="text" id="name" name="name" placeholder="nombre... "><br>
+          <label for="price"></label><br>
+          <input type="text" id="price" name="price" placeholder="precio... "><br><br>
+          <div class="d-grid gap-2 col-6 mx-auto">
+            <input class="btn btn-primary btn-sm btn-block" type="submit" value="pujar">
+          </div>
+        </form>
+        </div>
+        {% if bid_added %}
+        <h4>Bid added!</h4>
+        {% endif %}
 
-    {% if bid_added %}
-    <h4>Bid added!</h4>
-    {% endif %}
-  </center>
-
+      </div>
+    </div>    
   </body>
 
 </html>
