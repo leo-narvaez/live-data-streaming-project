@@ -14,7 +14,7 @@ from confluent_kafka.schema_registry.json_schema import JSONSerializer
 
 app = Flask(__name__)
 
-API_KEY, ENDPOINT_SCHEMA_URL, API_SECRET_KEY, SCHEMA_REGISTRY_API_SECRET, BOOTSTRAP_SERVER, SECURITY_PROTOCOL, SSL_MECHANISM, SCHEMA_REGISTRY_API_KEY = config.config_values()
+API_KEY, ENDPOINT_SCHEMA_URL, BOOTSTRAP_SERVER, SECURITY_PROTOCOL, SSL_MECHANISM, SCHEMA_REGISTRY_API_KEY, SCHEMA_REGISTRY_API_SECRET, API_SECRET_KEY  = config.config_values()
 
 
 def sasl_conf():
@@ -91,22 +91,21 @@ def bid():
 				}
 			#print the key and the message on terminal window
 			print(msg_key, ':', response)
-
-
 		#---------------
 		schema_registry_conf = schema_config()
-
+		print("Schema: ", schema_registry_conf)
 		#inititalize the schema registry client to fetch the schema
 		schema_registry_client = SchemaRegistryClient(schema_registry_conf)
-		
+		print("Schema registry", schema_registry_client)
 		topic = 'auction'
 		#getting the latest schema from Schema registry
 		my_schema = schema_registry_client.get_latest_version(topic + '-value').schema.schema_str 
-
+		print("My schema", my_schema)
 		#To serialize the keys
 		string_serializer = StringSerializer('utf_8')
 		#to serialize json data
 		json_serializer = JSONSerializer(my_schema, schema_registry_client, to_dict=None)
+		print("Json: ", json_serializer)
 		producer = Producer(sasl_conf())
 
 		print(f"Producing user records to topic {topic}. ^C to exit.")

@@ -4,7 +4,7 @@ API_SECRET_KEY = 'oZiBqs8fTvQU2cEa55OD4C2kig221BuJe9Qp5r/U+4wsFx2DcMCSKU+bT9c/bF
 SCHEMA_REGISTRY_API_KEY = 'Y62RX7D2CGAUD7RB'
 SCHEMA_REGISTRY_API_SECRET = 'jxJqRgMJhkcFjJmVrOsGx+fhRXRJ7Yemilef4UcSJ7YaMfFlh6Z35veb9IoigBmb'
 
-ENDPOINT_SCHEMA_URL  = 'https://pkc-qr9n1m.spaincentral.azure.confluent.cloud:443'
+ENDPOINT_SCHEMA_URL  = 'https://psrc-3508o.westus2.azure.confluent.cloud'
 BOOTSTRAP_SERVER = 'pkc-qr9n1m.spaincentral.azure.confluent.cloud:9092'
 SECURITY_PROTOCOL = 'SASL_SSL'
 SSL_MECHANISM = 'PLAIN'

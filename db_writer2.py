@@ -10,14 +10,13 @@ from confluent_kafka.schema_registry.json_schema import JSONDeserializer
 from confluent_kafka.schema_registry import SchemaRegistryClient
 
 
-
-API_KEY, ENDPOINT_SCHEMA_URL, API_SECRET_KEY, BOOTSTRAP_SERVER, SECURITY_PROTOCOL, SSL_MECHANISM, SCHEMA_REGISTRY_API_KEY, SCHEMA_REGISTRY_API_SECRET = config.config_values()
+API_KEY, ENDPOINT_SCHEMA_URL, BOOTSTRAP_SERVER, SECURITY_PROTOCOL, SSL_MECHANISM, SCHEMA_REGISTRY_API_KEY, SCHEMA_REGISTRY_API_SECRET, API_SECRET_KEY  = config.config_values()
 
 
 def sasl_conf():
 
     sasl_conf = {'sasl.mechanism': SSL_MECHANISM,
-                 # Set to SASL_SSL to enable TLS support.
+                # Set to SASL_SSL to enable TLS support.
                 #  'security.protocol': 'SASL_PLAINTEXT'}
                 'bootstrap.servers':BOOTSTRAP_SERVER,
                 'security.protocol': SECURITY_PROTOCOL,
