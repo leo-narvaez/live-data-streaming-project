@@ -53,7 +53,7 @@ def main(topic):
     consumer.subscribe([topic])
 
     counter=0
-    with open('./output.csv', 'a+', newline='') as f:
+    with open('./output/output.csv', 'a+', newline='') as f:
         w = csv.writer(f)
         #go to the starting of the file
         f.seek(0)

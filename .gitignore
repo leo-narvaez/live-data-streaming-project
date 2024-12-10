@@ -20,3 +20,6 @@ Thumbs.db
 
 # Archivos de bases de datos locales
 *.sqlite3
+
+# Archivo output.csv
+output/*.csv

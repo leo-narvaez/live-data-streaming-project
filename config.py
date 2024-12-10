@@ -20,9 +20,9 @@ def config_values():
 			API_SECRET_KEY \
 	
 # Conexión a la base de daros SQL en Azure
-HOST = "localhost"  # El host de tu base de datos en Azure
-USER = "root"  # Tu usuario de base de datos en Azure (con el formato: user@server-name)
-PASSW = "tu_contraseña"  # Tu contraseña de base de datos
+HOST = "server-livestream.mysql.database.azure.com"  # El host de tu base de datos en Azure
+USER = "liveuser"  # Tu usuario de base de datos en Azure (con el formato: user@server-name)
+PASSW = "mysql-passw1!"  # Tu contraseña de base de datos
 DATABASE = "livestream"  # El nombre de la base de datos en Azure
 
 def config_mysql():
