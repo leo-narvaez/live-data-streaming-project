@@ -50,7 +50,12 @@ Para escribir el archivo `csv` en otra terminal ejecuta:
 python file_writer.py
 ```
 ## 5. PowerBI
+- Probablemente no tengas el conector de MySQL para PowerBI, así que antes te hará falta instalarlo: [conector](dev.mysql.com/downloads/connector/net)
 - Abre el archivo de powerbi: `dashboard-livestream.pbix`
+- Te pedirá credenciales para la base de datos. Son las mismas de la conexión a MySQL definida en el archivo `config.py`
+- Una vez conectado podrás visualizar los datos guardados en la base de datos
+![mysql-powerbi](https://github.com/user-attachments/assets/ddffd57e-8ba1-408a-bd77-dc4fb8577330)
+
 
 ## 6. Desactivar el entorno virtual
 
