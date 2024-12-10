@@ -63,3 +63,17 @@ Cuando termines de trabajar en el proyecto, puedes desactivar el entorno virtual
 ```bash
 deactivate
 ```
+
+## Contribuidores
+
+¡Gracias a todos mis compañeros que han contribuido a este proyecto! 🚀
+
+
+| Imagen                                       | Nombre del Colaborador                        | Descripción de la Contribución            |
+|----------------------------------------------|----------------------------------------------|-------------------------------------------|
+| <img src="https://github.com/leo-narvaez.png" width="40" height="40"> | [Leonardo Narváez](https://github.com/leo-narvaez) | Backend        |
+| <img src="https://github.com/anaBorja.png" width="40" height="40"> | [Ana Borja](https://github.com/anaBorja) | Frontend           |
+| <img src="https://github.com/martafraj.png" width="40" height="40"> | [Marta Fraile](https://github.com/martafraj) | Arquitectura           |
+| <img src="https://github.com/Alvaro-diez.png" width="40" height="40"> | [Álvaro Diez](https://github.com/Alvaro-diez) | Arquitectura - Backend           |
+| <img src="https://github.com/sbb23tajamar.png" width="40" height="40"> | [Samuel Barahona](https://github.com/sbb23tajamar) | Documentación        |
+
