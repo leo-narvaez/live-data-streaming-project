@@ -1,4 +1,5 @@
-# live-data-streaming-project
+# End to End - Proyecto de Subasta en Tiempo Real 
+![kafka-live-stream](https://github.com/user-attachments/assets/538b6dfa-ad54-4678-a91c-886921547b85)
 
 ## 1. Crear un entorno virtual
 
@@ -28,15 +29,30 @@ Cuando el entorno esté activado, verás su nombre en la línea de comandos, ind
 Si tu proyecto tiene un archivo que lista las dependencias necesarias (como un archivo `requirements.txt`), puedes instalar todas las bibliotecas requeridas de manera automática. Esto asegura que tu proyecto tenga todas las herramientas necesarias para funcionar correctamente.
 ```bash
 pip install -r requirements.txt
-
 ```
+
+## 4. Ejecutar el proyecto
 
 Ejecutar el proyecto Flask:  
 ```bash
 flask run
 ```
+Ejecutar los `writers` en diferentes terminales con:
+```bash
+python db_writer1.py
+```
 
-## 4. Desactivar el entorno virtual
+```bash
+python db_writer2.py
+```
+Para escribir el archivo `csv` en otra terminal ejecuta:
+```bash
+python file_writer.py
+```
+## 5. PowerBI
+- Abre el archivo de powerbi: `dashboard-livestream.pbix`
+
+## 6. Desactivar el entorno virtual
 
 Cuando termines de trabajar en el proyecto, puedes desactivar el entorno virtual para salir de él. Esto te devolverá a tu entorno de Python global.
 ```bash
